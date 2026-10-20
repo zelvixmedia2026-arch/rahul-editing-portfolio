@@ -2395,5 +2395,18 @@ body { overflow-x: clip; }
 
 @media (max-width: 620px) {
   .marquee .brand-tile { width: 130px; height: 110px; }
-  .marquee .brand-item { margin-right: 10px; }
+  .marquee .brand-item { margin-right: 5px; }
+}
+
+
+.marquee .brand-tile {
+  width: 110px;
+  height: 110px;
+}
+
+.marquee .brand-item { margin-right: 4px; }
+
+@media (max-width: 620px) {
+  .marquee .brand-tile { width: 96px; height: 82px; }
+  .marquee .brand-item { margin-right: 3px; }
 }
