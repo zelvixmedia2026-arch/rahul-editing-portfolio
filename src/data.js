@@ -7,14 +7,10 @@ export const YOUTUBE = "";   // e.g. "https://youtube.com/@yourchannel"
 export const WA = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 // type: "instagram" | "youtube" | "short" (use "short" for a vertical YouTube Short)
-export const videos = [
-  { type: "instagram", id: "DY85v94xrHj" },
-  { type: "instagram", id: "Db3B14gglCX" },
-  { type: "instagram", id: "DZpBZrnBulZ" },
-  { type: "instagram", id: "DeRcuk8Tpd3" },
-  { type: "instagram", id: "DZsTBXEtqr-" },
-  { type: "youtube",   id: "rMoVLWFFmkU" },
-];
+// the numbers match the files in public/videos/ (video1.mp4, video2.mp4, ...)
+export const videos = [1, 2, 3, 4, 5, 9, 11, 12, 13, 14, 16, 17, 18].map((n) => ({
+  src: `/videos/video${n}.mp4`,
+}));
 
 export const brands = [
   ["AURO", "B1.png"], ["BUZZ BITE MEDIA", "B2.png"], ["DELITE", "B3.png"],

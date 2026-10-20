@@ -2116,3 +2116,80 @@ body { overflow-x: clip; }
   .hero-btn { font-size: 11px; padding: 0 16px; }
   .vm-reel { width: 78vw; }
 }
+
+/* =========================
+   REEL MARQUEE
+========================= */
+
+.reel-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 15px 0 30px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.reel-track {
+  display: flex;
+  width: max-content;
+  animation: reelScroll 80s linear infinite;
+}
+
+.reel-marquee:hover .reel-track { animation-play-state: paused; }
+
+.reel-item { flex: 0 0 auto; margin-right: 20px; }
+
+.reel-marquee .vm-reel { width: 280px; }
+
+@keyframes reelScroll {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@media (max-width: 700px) {
+  .reel-item { margin-right: 12px; }
+  .reel-marquee .vm-reel { width: 200px; }
+  .reel-track { animation-duration: 60s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-marquee { overflow-x: auto; }
+  .reel-track { animation: none; }
+}
+
+/* Landscape video cards */
+.reel-marquee .vm-reel {
+  width: 360px;
+  aspect-ratio: 16 / 9;
+  background: #071f21;
+}
+
+.reel-marquee .vm-reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .reel-marquee .vm-reel { width: 260px; max-width: none; }
+}
+
+/* Each card takes the shape of its own video */
+.reel-marquee .reel-track { align-items: center; }
+
+.reel-marquee .vm-reel {
+  height: 400px;
+  width: auto;
+  max-width: none;
+  background: #071f21;
+}
+
+.reel-marquee .vm-reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .reel-marquee .vm-reel { height: 300px; }
+}
