@@ -2410,3 +2410,33 @@ body { overflow-x: clip; }
   .marquee .brand-tile { width: 96px; height: 82px; }
   .marquee .brand-item { margin-right: 3px; }
 }
+
+
+
+/* =========================
+   HERO SHOWREEL VIDEO
+========================= */
+
+.film-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0b2a2d;
+}
+
+/* the centre is now a button, so reset its default look */
+button.film-center {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* let clicks pass through the dark overlay */
+.film-top, .film-bottom, .film-shade { pointer-events: none; }
+
+/* pop-up animation for the showreel */
+.lb-stage.pop { animation: lbPop 0.5s cubic-bezier(0.2, 0.9, 0.2, 1) both; }
+.lb-stage.pop video { max-height: 80vh; }
