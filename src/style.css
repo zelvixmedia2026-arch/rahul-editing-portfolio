@@ -2385,3 +2385,15 @@ body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   .lb, .lb-stage { animation: none; }
 }
+
+.marquee .brand-tile {
+  width: 190px;
+  height: 160px;
+}
+
+.marquee .brand-item { margin-right: 14px; }
+
+@media (max-width: 620px) {
+  .marquee .brand-tile { width: 130px; height: 110px; }
+  .marquee .brand-item { margin-right: 10px; }
+}
