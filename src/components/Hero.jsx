@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="hero-content">
         <p className="hero-eyebrow hero-in" style={{ "--d": "0.1s" }}>
           <i className="live-dot"></i>
-          VIDEO EDITOR <b>/</b> CONTENT CREATOR
+          VIDEO EDITOR 
         </p>
 
         <h1>
