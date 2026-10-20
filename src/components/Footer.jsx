@@ -1,5 +1,6 @@
 import { WA, EMAIL, INSTAGRAM, YOUTUBE } from "../data";
 import { goTo } from "../utils";
+import Reveal from "./Reveal";
 
 const links = [
   ["top", "Home"], ["work", "Work"], ["about", "About"],
@@ -9,7 +10,7 @@ const links = [
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-inner">
+      <Reveal anim="up" className="footer-inner">
         <div className="footer-top">
           <div className="footer-brand">
             <a href="#top" className="footer-logo" onClick={(e) => goTo(e, "top")}>
@@ -54,7 +55,7 @@ export default function Footer() {
             Back to top ↑
           </button>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

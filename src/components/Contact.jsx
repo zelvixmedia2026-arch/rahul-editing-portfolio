@@ -1,5 +1,8 @@
+
+
 import { useState } from "react";
 import { WA, EMAIL, INSTAGRAM, YOUTUBE } from "../data";
+import Reveal from "./Reveal";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", type: "YouTube video", message: "" });
@@ -24,7 +27,7 @@ export default function Contact() {
   return (
     <section className="contact-page" id="contact">
       <div className="contact-grid">
-        <div className="contact-text">
+        <Reveal anim="left" className="contact-text">
           <p className="contact-eyebrow"><span>●</span> LET'S WORK TOGETHER</p>
           <h2>Send your footage. I'll take care of the rest<span>.</span></h2>
           <p className="contact-intro">
@@ -41,9 +44,9 @@ export default function Contact() {
               <li><span>YOUTUBE</span><a href={YOUTUBE} target="_blank" rel="noopener noreferrer">Watch my edits ↗</a></li>
             )}
           </ul>
-        </div>
+        </Reveal>
 
-        <form className="contact-form" onSubmit={submit}>
+        <Reveal as="form" anim="right" delay={0.15} className="contact-form" onSubmit={submit}>
           <h3>Tell me about your project</h3>
 
           <label htmlFor="name">Your name</label>
@@ -69,7 +72,7 @@ export default function Contact() {
           <p className="contact-sent" role="status" hidden={!sent}>
             WhatsApp should have opened with your message ready. Just press send there.
           </p>
-        </form>
+        </Reveal>
       </div>
     </section>
   );

@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="navbar-inner">
         <a href="#top" className="navbar-logo" onClick={(e) => handle(e, "top")}>
           <span className="logo-typing">RAHUL EDITING</span>
-          <span className="logo-dot">.</span>
+          <span className="logo-dot"></span>
         </a>
         <button
           className="menu-toggle"

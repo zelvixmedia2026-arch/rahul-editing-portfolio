@@ -12,6 +12,7 @@ export const videos = [
   { type: "instagram", id: "Db3B14gglCX" },
   { type: "instagram", id: "DZpBZrnBulZ" },
   { type: "instagram", id: "DeRcuk8Tpd3" },
+  { type: "instagram", id: "DZsTBXEtqr-" },
   { type: "youtube",   id: "rMoVLWFFmkU" },
 ];
 
@@ -22,10 +23,11 @@ export const brands = [
 ];
 
 export const creators = [
-  ["GAURAV MEDATWAL", "Instagram", "@gaurav18medatwal", "https://www.instagram.com/gaurav18medatwal?vrfl=MTR2dTZnbWtpZ29yMQ==", "GAURAV MEDATWAL.png"],
-  ["KIRTI VERMA", "Instagram", "@kirtivermaofficial", "https://www.instagram.com/kritivermaofficial?obrf=MTExZXlpZnB1YW9oeg==", "kirti.png"],
-  ["MANISHA SAXENA", "Instagram", "@maneeshaa.saxenaa", "https://www.instagram.com/maneeshaa.saxenaa?dlrf=MXZoN3QzMnA3azBwdg==", "Manisha.png"],
-  ["URFI JAVEED", "Youtube", "@TheUorfi", "https://youtube.com/@theuorfi?si=NNNUViisWQSkPCSP", "URFI JAVEED.png"],
-  ["VIKALP MEHTA", "Instagram", "@vikalp_mehta", "https://www.instagram.com/vikalp_mehta?vrfl=MWVzbWx3Mng5cWR2cA==", "Vikalp.png"],
-  ["NOOR", "Instagram", "@noor_wav", "https://www.instagram.com/noor_wav?vrfl=MWFta2djdGNreDFhcA==", "NOOR.png"],
+  ["VIKALP MEHTA", "Instagram", "@vikalp_mehta", "Vikalp.png"],
+  ["URFI JAVEED", "Youtube", "@TheUorfi", "URFI JAVEED.png"],
+  ["KIRTI VERMA", "Instagram", "@kirtivermaofficial", "kirti.png"],
+  ["GAURAV MEDATWAL", "Instagram", "@gaurav18medatwal", "GAURAV MEDATWAL.png"],
+  ["MANISHA SAXENA", "Instagram", "@maneeshaa.saxenaa", "Manisha.png"],
+  ["NOOR", "Instagram", "@noor_wav", "NOOR.png"],
 ];
+
