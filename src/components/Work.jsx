@@ -226,8 +226,8 @@ export default function Work() {
     <section className="work-showcase" id="work">
       <div className="showcase-heading">
         <Reveal anim="left">
-          <p className="section-eyebrow">SELECTED WORK</p>
-          <h2>Latest edits<span>.</span></h2>
+          {/* <p className="section-eyebrow">SELECTED WORK</p> */}
+          <h2>Featured Project<span>.</span></h2>
         </Reveal>
         <Reveal anim="right" delay={0.15}>
           <p className="showcase-description">
