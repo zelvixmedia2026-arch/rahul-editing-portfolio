@@ -2590,3 +2590,39 @@ button.hero-play {
   .rc-loader { animation: none; }
   .rc-spinner { animation-duration: 2s; }
 }
+
+
+/* =========================
+   HERO BACKGROUND: PHONE-FRIENDLY
+========================= */
+
+/* still image, always shown first */
+.hero-bg-poster {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background: #0d3f42 url("/hero.jpg") center / cover no-repeat;
+}
+
+/* video fades in only when it is ready */
+.hero-bg-video {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.hero-bg-video.ready { opacity: 1; }
+
+@media (max-width: 700px) {
+  .hero-bg-video,
+  .hero-bg-poster { object-position: 60% center; background-position: 60% center; }
+
+  /* stronger layer so text stays readable on a small screen */
+  .hero-bg-shade {
+    background: linear-gradient(180deg, rgba(13, 63, 66, 0.88), rgba(13, 63, 66, 0.72) 45%, rgba(13, 63, 66, 0.92));
+  }
+}
+
+
+.navbar-inner {
+  max-width: none;
+  padding: 0 4%;
+}

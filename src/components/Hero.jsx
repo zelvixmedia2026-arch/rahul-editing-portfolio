@@ -4,6 +4,7 @@ import { videos } from "../data";
 import { goTo } from "../utils";
 
 const SHOWREEL = "/showreel.mp4";
+const SHOWREEL_MOBILE = "/showreel-mobile.mp4";
 
 function CountUp({ end, suffix = "" }) {
   const [n, setN] = useState(0);
@@ -21,7 +22,32 @@ function CountUp({ end, suffix = "" }) {
   return <>{n}{suffix}</>;
 }
 
-/* pop-up player with sound */
+/* decides which background video to use (if any) */
+function useBackgroundMode() {
+  const [mode, setMode] = useState("none"); // none | mobile | desktop
+
+  useEffect(() => {
+    const conn = navigator.connection || {};
+    const slow = conn.saveData || /2g$/.test(conn.effectiveType || "");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (slow || reduce) return; // stays "none": still image only
+
+    const phone = window.matchMedia("(max-width: 700px)").matches;
+    const start = () => setMode(phone ? "mobile" : "desktop");
+
+    // wait until the page has loaded, so the text appears first
+    if (document.readyState === "complete") {
+      const t = setTimeout(start, 300);
+      return () => clearTimeout(t);
+    }
+    window.addEventListener("load", start, { once: true });
+    return () => window.removeEventListener("load", start);
+  }, []);
+
+  return mode;
+}
+
+/* pop-up player with sound (full quality, loads only on click) */
 function ShowreelModal({ onClose }) {
   const ref = useRef(null);
 
@@ -56,13 +82,18 @@ function ShowreelModal({ onClose }) {
 export default function Hero() {
   const section = useRef(null);
   const vid = useRef(null);
+  const mode = useBackgroundMode();
   const [open, setOpen] = useState(false);
-  const [hasVideo, setHasVideo] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
 
-  // background video plays muted only while the hero is on screen and the pop-up is closed
+  const showVideo = mode !== "none" && !failed;
+  const bgSrc = mode === "mobile" ? SHOWREEL_MOBILE : SHOWREEL;
+
+  // play muted only while the hero is on screen and the pop-up is closed
   useEffect(() => {
     const el = vid.current;
-    if (!el || !hasVideo) return;
+    if (!el || !showVideo) return;
     if (open) {
       el.pause();
       return;
@@ -73,22 +104,24 @@ export default function Hero() {
     );
     io.observe(section.current);
     return () => io.disconnect();
-  }, [open, hasVideo]);
+  }, [open, showVideo]);
 
   return (
     <section className="work-hero" id="top" ref={section}>
-      {/* video behind everything */}
-      {hasVideo && (
+      {/* still image first, video fades in over it */}
+      <div className="hero-bg-poster"></div>
+
+      {showVideo && (
         <video
           ref={vid}
-          className="hero-bg-video"
-          src={SHOWREEL}
-          poster="/hero.jpg"
+          className={`hero-bg-video${ready ? " ready" : ""}`}
+          src={bgSrc}
           muted
           loop
           playsInline
           preload="metadata"
-          onError={() => setHasVideo(false)}
+          onLoadedData={() => setReady(true)}
+          onError={() => setFailed(true)}
         />
       )}
       <div className="hero-bg-shade"></div>
@@ -124,11 +157,7 @@ export default function Hero() {
         </div> */}
       </div>
 
-      {/* right side: play button */}
       <div className="hero-visual hero-in hero-play-wrap" style={{ "--d": "0.5s" }}>
-        {/* <span className="note note-a">Stories<br />Edit<br />Create<br />Repeat</span>
-        <span className="note note-b">Good edits,<br />better stories.</span> */}
-
         {/* <button
           type="button"
           className="film-center hero-play"
