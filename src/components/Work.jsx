@@ -9,6 +9,7 @@ function Card({ src, index, scrollerRef, ratios, paused, onOpen }) {
   const vid = useRef(null);
   const [near, setNear] = useState(false);
   const [ratio, setRatio] = useState(9 / 16);
+  const [loading, setLoading] = useState(true);
 
   // start downloading only when close to the screen
   useEffect(() => {
@@ -46,11 +47,12 @@ function Card({ src, index, scrollerRef, ratios, paused, onOpen }) {
   return (
     <div
       ref={box}
-      className="rc"
+      className={`rc${loading ? " is-loading" : ""}`}
       style={{ aspectRatio: ratio }}
       role="button"
       tabIndex={0}
       aria-label="Play video with sound"
+      aria-busy={loading}
       onClick={open}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && open()}
     >
@@ -68,7 +70,18 @@ function Card({ src, index, scrollerRef, ratios, paused, onOpen }) {
             ratios.current[index] = w / h;
           }
         }}
+        onLoadedData={() => setLoading(false)}
+        onCanPlay={() => setLoading(false)}
+        onPlaying={() => setLoading(false)}
+        onWaiting={() => setLoading(true)}
+        onError={() => setLoading(false)}
       />
+
+      {/* loading animation */}
+      <div className="rc-loader" aria-hidden="true">
+        <span className="rc-spinner"></span>
+      </div>
+
       <span className="rc-play">▶</span>
     </div>
   );
@@ -227,7 +240,7 @@ export default function Work() {
       <div className="showcase-heading">
         <Reveal anim="left">
           {/* <p className="section-eyebrow">SELECTED WORK</p> */}
-          <h2>Featured Project<span>.</span></h2>
+          <h2>Featured Project <span>.</span></h2>
         </Reveal>
         <Reveal anim="right" delay={0.15}>
           <p className="showcase-description">

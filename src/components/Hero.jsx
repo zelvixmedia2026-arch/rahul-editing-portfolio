@@ -29,10 +29,9 @@ function ShowreelModal({ onClose }) {
     const v = ref.current;
     v.muted = false;
     v.play().catch(() => {
-      v.muted = true; // browser refused sound: play muted instead of staying paused
+      v.muted = true;
       v.play().catch(() => {});
     });
-
     const onKey = (e) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", onKey);
     const old = document.body.style.overflow;
@@ -55,12 +54,12 @@ function ShowreelModal({ onClose }) {
 }
 
 export default function Hero() {
-  const screen = useRef(null);
+  const section = useRef(null);
   const vid = useRef(null);
   const [open, setOpen] = useState(false);
   const [hasVideo, setHasVideo] = useState(true);
 
-  // play muted only while the hero is on screen and the pop-up is closed
+  // background video plays muted only while the hero is on screen and the pop-up is closed
   useEffect(() => {
     const el = vid.current;
     if (!el || !hasVideo) return;
@@ -70,14 +69,30 @@ export default function Hero() {
     }
     const io = new IntersectionObserver(
       ([e]) => (e.isIntersecting ? el.play().catch(() => {}) : el.pause()),
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
-    io.observe(screen.current);
+    io.observe(section.current);
     return () => io.disconnect();
   }, [open, hasVideo]);
 
   return (
-    <section className="work-hero" id="top">
+    <section className="work-hero" id="top" ref={section}>
+      {/* video behind everything */}
+      {hasVideo && (
+        <video
+          ref={vid}
+          className="hero-bg-video"
+          src={SHOWREEL}
+          poster="/hero.jpg"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onError={() => setHasVideo(false)}
+        />
+      )}
+      <div className="hero-bg-shade"></div>
+
       <div className="hero-content">
         <p className="hero-eyebrow hero-in" style={{ "--d": "0.1s" }}>
           <i className="live-dot"></i>
@@ -109,54 +124,20 @@ export default function Hero() {
         </div> */}
       </div>
 
-      {/* ===== Cinematic film frame with video ===== */}
-      <div className="hero-visual hero-in" style={{ "--d": "0.5s" }}>
-        <span className="note note-a">Stories<br />Edit<br />Create<br />Repeat</span>
-        <span className="note note-b">Good edits,<br />better stories.</span>
+      {/* right side: play button */}
+      <div className="hero-visual hero-in hero-play-wrap" style={{ "--d": "0.5s" }}>
+        {/* <span className="note note-a">Stories<br />Edit<br />Create<br />Repeat</span>
+        <span className="note note-b">Good edits,<br />better stories.</span> */}
 
-        <div className="film">
-          <span className="film-edge">EDIT 400 &nbsp;•&nbsp; RAHUL</span>
-
-          <div className="film-screen" ref={screen}>
-            {/* shown until the video or hero.jpg is available */}
-            <div className="film-fallback">
-              <div className="ff-sun"></div>
-              <div className="ff-hill ff-hill-1"></div>
-              <div className="ff-hill ff-hill-2"></div>
-            </div>
-            <div className="film-photo"></div>
-
-            {hasVideo && (
-              <video
-                ref={vid}
-                className="film-video"
-                src={SHOWREEL}
-                poster="/hero.jpg"
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                onError={() => setHasVideo(false)}
-              />
-            )}
-
-            <div className="film-shade"></div>
-
-            <div className="film-top"><span>SHOWREEL</span><span>HD</span></div>
-
-            {/* <button
-              type="button"
-              className="film-center"
-              onClick={() => setOpen(true)}
-              aria-label="Watch showreel with sound"
-            >
-              <span className="film-play">▶</span>
-              <span className="film-watch">WATCH SHOWREEL</span>
-            </button> */}
-
-            <div className="film-bottom"><span>RAHUL EDITING</span><span>VIDEO EDITOR</span></div>
-          </div>
-        </div>
+        {/* <button
+          type="button"
+          className="film-center hero-play"
+          onClick={() => setOpen(true)}
+          aria-label="Watch showreel with sound"
+        >
+          <span className="film-play">▶</span>
+          <span className="film-watch">WATCH SHOWREEL</span>
+        </button> */}
 
         {/* <div className="film-tag">AVAILABLE FOR WORK</div> */}
       </div>
