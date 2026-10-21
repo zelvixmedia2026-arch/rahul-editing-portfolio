@@ -2626,3 +2626,16 @@ button.hero-play {
   max-width: none;
   padding: 0 4%;
 }
+
+
+/* =========================
+   PC: video background | PHONE: film frame
+========================= */
+
+/* Mobile-only hero spacing fix */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+}
