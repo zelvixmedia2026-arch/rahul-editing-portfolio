@@ -2440,3 +2440,34 @@ button.film-center {
 /* pop-up animation for the showreel */
 .lb-stage.pop { animation: lbPop 0.5s cubic-bezier(0.2, 0.9, 0.2, 1) both; }
 .lb-stage.pop video { max-height: 80vh; }
+
+
+/* =========================
+   BIGGER SHOWREEL FRAME
+========================= */
+
+/* ---------- desktop ---------- */
+.work-hero { grid-template-columns: 0.95fr 1.05fr; }
+.hero-visual { max-width: 780px; }
+.film { padding: 18px 34px; }
+.film-screen { aspect-ratio: 16 / 9; }
+
+/* ---------- phone ---------- */
+@media (max-width: 1000px) {
+  .work-hero { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 100%; }
+}
+
+@media (max-width: 700px) {
+  .hero-visual {
+    width: calc(100% + 6vw);
+    margin: 0 -3vw 26px;
+    justify-self: center;
+  }
+  .film { padding: 10px 22px; }
+  .film::before { left: 6px; width: 9px; }
+  .film::after { right: 6px; width: 9px; }
+  .film-screen { aspect-ratio: 4 / 3; }
+  .film-play { width: 70px; height: 70px; font-size: 20px; }
+  .film-watch { font-size: 12px; }
+}

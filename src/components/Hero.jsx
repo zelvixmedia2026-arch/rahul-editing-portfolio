@@ -81,7 +81,7 @@ export default function Hero() {
       <div className="hero-content">
         <p className="hero-eyebrow hero-in" style={{ "--d": "0.1s" }}>
           <i className="live-dot"></i>
-          VIDEO EDITOR <b>/</b> CONTENT CREATOR
+          VIDEO EDITOR 
         </p>
 
         <h1>
@@ -102,11 +102,11 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="hero-stats hero-in" style={{ "--d": "1s" }}>
+        {/* <div className="hero-stats hero-in" style={{ "--d": "1s" }}>
           <div><h2><CountUp end={videos.length} /></h2><p>REELS SHOWCASED</p></div>
           <div><h2><CountUp end={400} suffix="+" /></h2><p>VIDEOS EDITED</p></div>
           <div><h2><CountUp end={3} suffix="+" /></h2><p>YEARS EXPERIENCE</p></div>
-        </div>
+        </div> */}
       </div>
 
       {/* ===== Cinematic film frame with video ===== */}
@@ -158,7 +158,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="film-tag">AVAILABLE FOR WORK</div>
+        {/* <div className="film-tag">AVAILABLE FOR WORK</div> */}
       </div>
 
       {open && <ShowreelModal onClose={() => setOpen(false)} />}
