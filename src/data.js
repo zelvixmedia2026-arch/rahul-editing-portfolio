@@ -8,7 +8,7 @@ export const WA = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 // type: "instagram" | "youtube" | "short" (use "short" for a vertical YouTube Short)
 // the numbers match the files in public/videos/ (video1.mp4, video2.mp4, ...)
-export const videos = [1, 2, 3, 4, 5, 9, 11, 12, 13, 14, 16, 17, 18,19].map((n) => ({
+export const videos = [1, 2, 3, 4, 9, 11, 12, 13, 14, 16, 17, 18,19,20].map((n) => ({
   src: `/videos/video${n}.mp4`,
 }));
 
